@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    test2.py                                           :+:      :+:    :+:    #
+#    Matrix.py                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/10 00:00:59 by jcollon           #+#    #+#              #
-#    Updated: 2022/01/10 00:00:59 by jcollon          ###   ########lyon.fr    #
+#    Created: 2022/01/10 23:47:56 by jcollon           #+#    #+#              #
+#    Updated: 2022/01/10 23:47:56 by jcollon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,11 @@ def gen_token():
 		"client_secret": CLIENT_SECRET
 	}
 	r = requests.post(API_ENDPOINT + '/oauth/token', data=data)
-	return r.json()['access_token']
+	try:
+		return r.json()['access_token']
+	except KeyError:
+		print("cannot get acces token, make sure your CLIENT_ID and CLIENT_SECRET are set in settings.json, they can be found at https://profile.intra.42.fr/oauth/applications", file=sys.stderr)
+		exit(1)
 
 def user_in_users(user:str, users:list[str]):
 	for usr in users:
@@ -161,7 +165,7 @@ if __name__ == "__main__":
 		for col in render1[0]:
 			print_row(col, console, True, search)
 		for i in range(len(render1[1]) - 1, -1, -1):
-			print("[white]" + render1[1][i].center(10 * render1[2][i]), end="   ")
+			print("[white b]" + render1[1][i].center(10 * render1[2][i]), end="   ")
 
 	if render1[0] and render2[0]:
 		print("\n")
