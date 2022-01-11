@@ -20,7 +20,7 @@ Matrix print the 42 Lyon matrix to the screen with color based
       green: the place is available
       red: the place is taken by a user
       orange: the place is available, but there is something special with this place
-      blinking cyan: the place is taken by the user you are searching
+      blinking cyan: the place is taken by the user you are searching (if using iterm2 enable blink text in the settings)
 
    You can use some args to select the cluster that you want to show or to search a user:
       z1: select the z1 cluster

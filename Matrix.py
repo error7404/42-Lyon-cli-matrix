@@ -6,7 +6,7 @@
 #    By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 23:47:56 by jcollon           #+#    #+#              #
-#    Updated: 2022/01/11 16:36:54 by jcollon          ###   ########lyon.fr    #
+#    Updated: 2022/01/11 17:40:21 by jcollon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ def print_help():
       [red]red[white]: the place is taken by a user
       [orange1]orange[white]: the place is available, but there is something special with this place
       [blink cyan]blinking cyan""", end='')
-	print("""[white]: the place is taken by the user you are searching
+	print("""[white]: the place is taken by the user you are searching (if using iterm2 enable blink text in the settings)
 
    You can use some args to select the cluster that you want to show or to search a user:
       z1: select the z1 cluster
