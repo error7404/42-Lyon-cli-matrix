@@ -6,7 +6,7 @@
 #    By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 23:47:56 by jcollon           #+#    #+#              #
-#    Updated: 2022/01/10 23:47:56 by jcollon          ###   ########lyon.fr    #
+#    Updated: 2022/01/11 16:36:54 by jcollon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,17 +134,17 @@ if __name__ == "__main__":
 		if "z2" in sys.argv:
 			render1 = (add_tab(z1, z2), ("z1", "z2"), (len(z1[0]), len(z2[0])))
 		else:
-			render1 = (z1, ("z1"), len(z1[0]))
+			render1 = (z1, ("z1",), (len(z1[0]),))
 	elif "z2" in sys.argv:
-		render1 = (z2, ("z2"), len(z2[0]))
+		render1 = (z2, ("z2",), (len(z2[0]),))
 
 	if "z3" in sys.argv:
 		if "z4" in sys.argv:
 			render2 = (add_tab(z3, z4), ("z3", "z4"), (len(z3[0]), len(z4[0])))
 		else:
-			render2 = (z3, ("z3"), (len(z3[0])))
+			render2 = (z3, ("z3",), (len(z3[0]),))
 	elif "z4" in sys.argv:
-		render2 = (z4, ("z4"), (len(z4[0])))
+		render2 = (z4, ("z4",), (len(z4[0]),))
 
 	for z in ["z1", "z2", "z3", "z4"]:
 		try:
