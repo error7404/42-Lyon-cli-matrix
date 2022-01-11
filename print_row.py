@@ -17,7 +17,7 @@ def space_user (user:str) -> str:
         return ("".center(8))
     return user.center(8)
 
-def print_row(row:list[str], console:Console, reverse:bool=False, search:str=None) -> None:
+def print_row(row:list[str], console:Console, reverse:bool=False, search:list[str]=None) -> None:
     if row == None:
         return
     if reverse:
@@ -38,7 +38,9 @@ def print_row(row:list[str], console:Console, reverse:bool=False, search:str=Non
                 box = ["[white] ▄ ▄  ▄ ▄ ", "[white]  █    █  ", "[white] ▀ ▀  ▀ ▀ "]
                 console.print(box[i], end='')
             else:
-                if str(user) == search:
+                if str(user) in search:
+                    if i == 2:
+                        search.pop(search.index(str(user)))
                     console.print("[cyan blink]" + box[i], end='')
                 else:
                     console.print(COLORS[0] + box[i], end='')

@@ -96,7 +96,7 @@ def print_help():
       z2: select the z2 cluster
       z3: select the z3 cluster
       z4: select the z4 cluster
-      {login}: search for a user by their login (only 1 user can be search)""")
+      {login}: search for a user by their login""")
 
 if __name__ == "__main__":
 	if "--help" in sys.argv:
@@ -155,15 +155,12 @@ if __name__ == "__main__":
 	if not (render1[0] or render2[0]):
 		render1 = (add_tab(z1, z2), ("z1", "z2"), (len(z1[0]), len(z2[0])))
 		render2 = (add_tab(z3, z4), ("z3", "z4"), (len(z3[0]), len(z4[0])))
-	
-	if len(sys.argv) == 2:
-		search = sys.argv[1]
-	else:
-		search = None
+
+	sys.argv.pop(0)	
 	
 	if render1[0]:
 		for col in render1[0]:
-			print_row(col, console, True, search)
+			print_row(col, console, True, sys.argv)
 		for i in range(len(render1[1]) - 1, -1, -1):
 			print("[white b]" + render1[1][i].center(10 * render1[2][i]), end="   ")
 
@@ -172,9 +169,14 @@ if __name__ == "__main__":
 
 	if render2[0]:
 		for col in render2[0]:
-			print_row(col, console, True, search)
+			print_row(col, console, True, sys.argv)
 		for i in range(len(render2[1]) - 1, -1, -1):
 			print("[white b]" + render2[1][i].center(10 * render2[2][i]), end="   ")
 
 	print()
 	print(len(users), f"user{'s' if len(users) > 1 else ''}")
+	if sys.argv:
+		print("could not found " + ", ".join(sys.argv))
+		for user in sys.argv:
+			if not user_in_users(user, add_tab(add_tab(z1, z2), add_tab(z3, z4))):
+				print(f"[red blink]{user}[white] is in another cluster")
