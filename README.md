@@ -27,7 +27,7 @@ Matrix print the 42 Lyon matrix to the screen with color based
       z2: select the z2 cluster
       z3: select the z3 cluster
       z4: select the z4 cluster
-      {login}: search for a user by their login (only 1 user can be search)
+      {login}: search for a user by their login
 ```
 
 ![image](https://user-images.githubusercontent.com/48163201/148853307-aabe2bbf-0d58-45de-b85f-233965702d77.png)
