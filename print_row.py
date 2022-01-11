@@ -6,7 +6,7 @@
 #    By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 23:48:05 by jcollon           #+#    #+#              #
-#    Updated: 2022/01/10 23:48:05 by jcollon          ###   ########lyon.fr    #
+#    Updated: 2022/01/11 16:43:10 by jcollon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ def print_row(row:list[str], console:Console, reverse:bool=False, search:str=Non
             elif str(user) == "2":
                 console.print(COLORS[2] + box[i], end='')
             elif str(user) == "3":
-                box = ["[white]▀▄ ▄▀▀▄ ▄▀", "[white]  █    █  ", "[white]▄▀ ▀▄▄▀ ▀▄"]
+                box = ["[white] ▄ ▄  ▄ ▄ ", "[white]  █    █  ", "[white] ▀ ▀  ▀ ▀ "]
                 console.print(box[i], end='')
             else:
                 if str(user) == search:
