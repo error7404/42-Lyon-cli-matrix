@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/10 23:47:56 by jcollon           #+#    #+#              #
-#    Updated: 2022/01/11 17:40:21 by jcollon          ###   ########lyon.fr    #
+#    Created: 2022/01/13 21:48:33 by jcollon           #+#    #+#              #
+#    Updated: 2022/01/13 21:48:33 by jcollon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,19 +111,30 @@ if __name__ == "__main__":
 
 	token = gen_token()
 
-	locations:list = requests.get(API_ENDPOINT + "/v2/campus/9/locations", data={"access_token":token}, params={"per_page":100}).json()
-	for i in range(7 - 1):
-		for user in requests.get(API_ENDPOINT + "/v2/campus/9/locations", data={"access_token":token}, params={"per_page":100, "page": i}).json():
-			locations.append(user)
+	r = requests.get("http://nitsuj74.duckdns.org:3000/v1/location")
+	if not r.ok:
+		locations:list = requests.get(API_ENDPOINT + "/v2/campus/9/locations", data={"access_token":token}, params={"per_page":100}).json()
+		for i in range(7 - 1):
+			for user in requests.get(API_ENDPOINT + "/v2/campus/9/locations", data={"access_token":token}, params={"per_page":100, "page": i}).json():
+				locations.append(user)
 
-	users = []
-	for user in locations:
-		if user["user"]["location"] and user_in_users(user["user"]["login"], users):
-			users.append((user["user"]["login"], re.sub(r"\.(.*)", "", user["user"]["location"])))
-			location = parse_location(users[-1][1])
+		users = []
+		for user in locations:
+			if user["user"]["location"] and user_in_users(user["user"]["login"], users):
+				users.append((user["user"]["login"], re.sub(r"\.(.*)", "", user["user"]["location"])))
+				location = parse_location(users[-1][1])
+				try:
+					# set the login of the user for the variable z1 or z2 or z3 or z4 at the right place
+					locals()["z" + location["z"]][int(location["r"]) - 1][int(location["p"]) - 1] = users[-1][0]
+				except:
+					pass
+	else:
+		users = r.json()
+		for user in users:
+			location = parse_location(user[1])
 			try:
 				# set the login of the user for the variable z1 or z2 or z3 or z4 at the right place
-				locals()["z" + location["z"]][int(location["r"]) - 1][int(location["p"]) - 1] = users[-1][0]
+				locals()["z" + location["z"]][int(location["r"]) - 1][int(location["p"]) - 1] = user[0]
 			except:
 				pass
 	
