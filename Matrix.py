@@ -6,7 +6,7 @@
 #    By: jcollon <jcollon@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 21:48:33 by jcollon           #+#    #+#              #
-#    Updated: 2022/01/13 21:48:33 by jcollon          ###   ########lyon.fr    #
+#    Updated: 2022/06/15 07:10:42 by jcollon          ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,6 +108,12 @@ if __name__ == "__main__":
 		z2 = json.load(f2)
 		z3 = json.load(f3)
 		z4 = json.load(f4)
+	max_users = 0
+	for z in [z1, z2, z3, z4]:
+		for i in z:
+			for j in i:
+				if j == 1:
+					max_users += 1
 
 	token = gen_token()
 
@@ -185,7 +191,7 @@ if __name__ == "__main__":
 			print("[white b]" + render2[1][i].center(10 * render2[2][i]), end="   ")
 
 	print()
-	print(len(users), f"user{'s' if len(users) > 1 else ''}")
+	print("%d/%d" % (len(users), max_users), f"user{'s' if len(users) > 1 else ''}", "%.1f%%" % (len(users) / max_users * 100))
 	if sys.argv:
 		print("could not found " + ", ".join(sys.argv))
 		for user in sys.argv:
